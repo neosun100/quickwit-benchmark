@@ -64,6 +64,9 @@ docker build -t quickwit-benchmark .
 docker run -it -p 8089:8089 -e TARGET_HOST=http://your-test-host.com -e START_TIME=2024-03-30T00:00:00 -e END_TIME=2024-04-02T01:59:59 quickwit-benchmark
 ```
 
+## Screenshots
+![locust_quickwit](Pics/locust_quickwit.jpg)
+
 ## Project Description
 
 This project uses the Locust framework to simulate multiple concurrent users sending different types of query requests to the quickwit logging system, testing the system's performance metrics such as response latency and throughput under high concurrency scenarios. The test script includes various query scenarios, such as time range queries, full-text search queries, and time-based grouping and aggregation queries.
