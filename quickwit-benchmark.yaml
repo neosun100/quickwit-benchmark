@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quickwit-benchmark-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quickwit-benchmark
+  template:
+    metadata:
+      labels:
+        app: quickwit-benchmark
+    spec:
+      containers:
+      - name: quickwit-benchmark
+        image: 767398036361.dkr.ecr.ap-northeast-1.amazonaws.com/quickwit-benchmark:latest
+        ports:
+        - containerPort: 8089
+        env:
+        - name: TARGET_HOST
+          value: k8s-default-quickwit-380fe941d3-5485c235bea3532a.elb.ap-northeast-1.amazonaws.com
+        - name: START_TIME
+          value: 2024-03-30T00:00:00
+        - name: END_TIME
+          value: 2024-04-02T01:59:59
+        command: ["python"]
+        args: ["-m", "locust", "benchmark.py"]

@@ -35,14 +35,14 @@
 FROM python:3.11-slim as build
 RUN apt-get update && apt-get install -y gcc python3-dev
 WORKDIR /app
-COPY requirements.txt .
+COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 第二阶段: 运行阶段
-FROM python:3.11-alpine
-WORKDIR /app
-COPY --from=build /app /app
-ENTRYPOINT ["locust", "-f", "benchmark.py"]
+# FROM python:3.11-alpine
+# WORKDIR /app
+# COPY --from=build /app /app
+ENTRYPOINT ["python", "-m", "locust", "-f", "benchmark.py"]
 # 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 🍌 
 # REPOSITORY                                                             TAG                  IMAGE ID       CREATED              SIZE
 # quickwit-benchmark                                                     quickwit-benchmark   00fb4a4e8723   About a minute ago   57.6MB
