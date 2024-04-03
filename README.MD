@@ -11,7 +11,7 @@ quickwit-benchmark is a performance and load testing project that utilizes Locus
 ## Dependencies
 
 - locust
-- loguru==0.7.2
+- loguru
 
 ## Usage
 
