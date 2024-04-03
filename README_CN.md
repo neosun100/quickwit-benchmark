@@ -36,7 +36,7 @@ export END_TIME=2024-04-02T01:59:59
 4. 启动Locust
 
 ```
-locust -f benchmark_v1.py
+locust -f benchmark.py
 ```
 
 5. 在Locust Web UI中配置desired_total_user_count和spawn_rate参数,开始测试。
@@ -59,6 +59,7 @@ ENTRYPOINT ["locust", "-f", "benchmark.py"]
 
 ```
 docker build -t quickwit-benchmark .
+docker image prune 
 docker run -it -p 8089:8089 -e TARGET_HOST=http://your-test-host.com -e START_TIME=2024-03-30T00:00:00 -e END_TIME=2024-04-02T01:59:59 quickwit-benchmark
 ```
 
