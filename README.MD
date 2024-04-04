@@ -43,6 +43,35 @@ locust -f benchmark.py
 
 5. Configure desired_total_user_count and spawn_rate parameters in the Locust Web UI, and start the test.
 
+## Kubernetes Deployment
+
+This project can be deployed on Kubernetes for load testing. Please follow the steps below:
+
+1. Build Docker image
+
+```
+docker build -t quickwit-benchmark .
+```
+
+2. Push Docker image to a container registry (e.g., ECR)
+
+```
+docker push <your-registry>/quickwit-benchmark:latest
+```
+
+3. Create Kubernetes resources
+
+```
+kubectl apply -f quickwit-benchmark-deployment.yaml
+kubectl apply -f quickwit-benchmark-svc.yaml
+```
+
+The `quickwit-benchmark-deployment.yaml` and `quickwit-benchmark-svc.yaml` files are included in the repository. Please update the environment variables `TARGET_HOST`, `START_TIME`, and `END_TIME` in the `quickwit-benchmark-deployment.yaml` file according to your requirements.
+
+4. Access the Locust Web UI
+
+After the deployment is successful, you can access the Locust Web UI through the LoadBalancer service `quickwit-benchmark-test-control-plane-svc`. Configure desired_total_user_count and spawn_rate parameters, and start the test.
+
 ## Dockerfile
 
 ```dockerfile
