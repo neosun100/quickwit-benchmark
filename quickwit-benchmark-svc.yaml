@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+  labels:
+    app.kubernetes.io/instance: quickwit-benchmark-test
+  name: quickwit-benchmark-test-control-plane-svc
+  namespace: default
+spec:
+  ports:
+  - name: rest
+    port: 80
+    protocol: TCP
+    targetPort: 8089
+  # - name: grpc
+  #   port: 7281
+  #   protocol: TCP
+  #   targetPort: grpc
+  selector:
+    app: quickwit-benchmark
+    # app.kubernetes.io/instance: quickwit-test
+    # app.kubernetes.io/name: quickwit
+  sessionAffinity: None
+  type: LoadBalancer

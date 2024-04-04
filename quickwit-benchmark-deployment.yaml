@@ -17,12 +17,16 @@ spec:
         image: 767398036361.dkr.ecr.ap-northeast-1.amazonaws.com/quickwit-benchmark:latest
         ports:
         - containerPort: 8089
+        resources:
+          limits:
+            cpu: "4"
+            memory: 8Gi  # 内存限制为8G
         env:
         - name: TARGET_HOST
-          value: k8s-default-quickwit-380fe941d3-5485c235bea3532a.elb.ap-northeast-1.amazonaws.com
+          value: http://172.20.89.113:80
+          # ervice/quickwit-test-control-plane-svc             LoadBalancer   172.20.89.113  80:30233/TCP,7281:30384/TCP
+          # svc ip稳定
         - name: START_TIME
           value: 2024-03-30T00:00:00
         - name: END_TIME
           value: 2024-04-02T01:59:59
-        command: ["python"]
-        args: ["-m", "locust", "benchmark.py"]
