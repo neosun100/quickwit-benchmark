@@ -1,6 +1,6 @@
 # quickwit-benchmark
 
-[中文版本](README_CN.md)
+[中文版本](README_CN.md) | [繁體中文](README_TW.md) | [日本語版](README_JP.md)
 
 quickwit-benchmark is a performance and load testing project that utilizes Locust to test the query performance of the quickwit logging system.
 

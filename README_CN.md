@@ -1,5 +1,7 @@
 # quickwit-benchmark
 
+[English Version](README.md) | [繁體中文](README_TW.md) | [日本語版](README_JP.md)
+
 quickwit-benchmark是一个使用Locust进行性能压力测试的项目,旨在测试quickwit日志系统的查询性能。
 
 ## 运行环境
